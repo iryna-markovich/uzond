@@ -11,6 +11,7 @@ const bot = new TelegramBot(TG_BOT_TOKEN, { polling: true });
 let delay = 10_000;
 
 async function getDates() {
+  console.log('-----------------')
   const response = await fetch("https://kolejkagdansk.ajhmedia.pl/admin/API/date/5/307/pl");
   const { DATES } = await response.json();
 
