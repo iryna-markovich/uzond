@@ -1,11 +1,13 @@
+// import { about } from './commands';
 import { VercelRequest, VercelResponse } from '@vercel/node';
+import { Update } from 'telegraf/typings/core/types/typegram';
 import TelegramBot from 'node-telegram-bot-api';
-import { getDates } from './api';
-import { formatDate } from './utils';
-import { suitableDateFrom, suitableDateTo } from './const';
 
 const TG_BOT_TOKEN = process.env.TG_BOT_TOKEN || '';
-const CHAT_ID = process.env.CHAT_ID || '';
+const ENVIRONMENT = process.env.NODE_ENV || '';
+const VERCEL_URL = `${process.env.VERCEL_URL}`;
+
+// const bot = new Telegraf(TG_BOT_TOKEN);
 const bot = new TelegramBot(TG_BOT_TOKEN, { polling: true });
 
 const gre = (msg: any) => {
@@ -17,12 +19,7 @@ bot.on('message', gre);
 
 export default async function handle(req: VercelRequest, res: VercelResponse) {
   try {
-    console.log('hhhhhhhhh')
-    const dates = await getDates(5, 307);
 
-    const closestDate = dates.find((date: string) => new Date(formatDate(date)) >= new Date(suitableDateFrom) && new Date(formatDate(date)) <= new Date(suitableDateTo))
-
-    if (closestDate) bot.sendMessage(CHAT_ID, `📅 ${closestDate}\nhttps://kolejkagdansk.ajhmedia.pl/branch/5\nPosted ${new Date()}`);
   } catch (e: any) {
     res.statusCode = 500;
     res.setHeader('Content-Type', 'text/html');
@@ -30,5 +27,3 @@ export default async function handle(req: VercelRequest, res: VercelResponse) {
     console.error(e.message);
   }
 }
-
-handle({} as VercelRequest, {} as VercelResponse)
