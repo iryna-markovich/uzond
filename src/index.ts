@@ -19,6 +19,8 @@ async function getDates() {
 }
 
 let timerId = setTimeout(async function request() {
+  console.log('--------TIMER---')
+
   try {
     const dates = await getDates();
 
@@ -27,6 +29,8 @@ let timerId = setTimeout(async function request() {
     if (closestDate) bot.sendMessage(CHAT_ID, `📅 ${closestDate}\nhttps://kolejkagdansk.ajhmedia.pl/branch/5\nPosted ${new Date()}`);
 
   } catch (error) {
+    console.log('--------TIMER---', (error as Error).toString())
+
     delay *= 2;
   }
 

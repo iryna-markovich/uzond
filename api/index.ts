@@ -9,6 +9,5 @@ export default async function handle(req: VercelRequest, res: VercelResponse) {
     res.setHeader('Content-Type', 'text/html');
     res.end(`<h1>Server Error</h1><p>${e.toString()}</p>`);
     console.error(e.message);
-
   }
 }
