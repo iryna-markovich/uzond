@@ -19,7 +19,7 @@ export default async function handle(req: VercelRequest, res: VercelResponse) {
     setInterval(() => {
       bot.sendMessage(CHAT_ID, `📅 \nhttps://kolejkagdansk.ajhmedia.pl/branch/5\nPosted ${new Date()}`)
     
-    }, 10_000)
+    }, 100_000)
     
     // await startVercel(req, res)
   } catch (e: any) {
