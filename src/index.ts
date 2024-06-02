@@ -36,10 +36,17 @@ let timerId = setTimeout(async function request() {
 }, delay);
 
 export const startVercel = async (req: VercelRequest, res: VercelResponse) => {
-  // if (req.method === 'POST') {
+  try {
+    const dates = await getDates();
 
-  // } else {
+    const closestDate = dates.find((date: string) => new Date(formatDate(date)) >= new Date(suitableDateFrom) && new Date(formatDate(date)) <= new Date(suitableDateTo))
+
+    if (closestDate) bot.sendMessage(CHAT_ID, `📅 ${closestDate}\nhttps://kolejkagdansk.ajhmedia.pl/branch/5\nPosted ${new Date()}`);
+    
     res.status(200).json('Listening to bot events...');
-  // }
+  } catch (error) {
+    console.log(error, '<---- increase delay')
+    delay *= 2;
+  }
 };
 
