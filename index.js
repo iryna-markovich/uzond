@@ -1,0 +1,1 @@
+setInterval(() => { console.log('dddddd') }, 10000)
