@@ -8,8 +8,6 @@ const CHAT_ID = process.env.CHAT_ID || '';
 
 const bot = new TelegramBot(TG_BOT_TOKEN, { polling: true });
 
-bot.sendMessage(CHAT_ID, `📅 Alive`);
-
 let delay = 10_000;
 
 async function getDates() {
@@ -19,34 +17,23 @@ async function getDates() {
   return DATES
 }
 
-let timerId = setTimeout(async function request() {
-  try {
-    const dates = await getDates();
-
-    const closestDate = dates.find((date: string) => new Date(formatDate(date)) >= new Date(suitableDateFrom) && new Date(formatDate(date)) <= new Date(suitableDateTo))
-
-    if (closestDate) bot.sendMessage(CHAT_ID, `📅 ${closestDate}\nhttps://kolejkagdansk.ajhmedia.pl/branch/5\nPosted ${new Date()}`);
-  } catch (error) {
-    console.log(error, '<---- increase delay')
-    delay *= 2;
-  }
-
-  timerId = setTimeout(request, delay);
-
-}, delay);
-
 export const startVercel = async (req: VercelRequest, res: VercelResponse) => {
-  try {
-    const dates = await getDates();
+  let timerId = setTimeout(async function request() {
+    try {
+      const dates = await getDates();
 
-    const closestDate = dates.find((date: string) => new Date(formatDate(date)) >= new Date(suitableDateFrom) && new Date(formatDate(date)) <= new Date(suitableDateTo))
+      const closestDate = dates.find((date: string) => new Date(formatDate(date)) >= new Date(suitableDateFrom) && new Date(formatDate(date)) <= new Date(suitableDateTo))
 
-    if (closestDate) bot.sendMessage(CHAT_ID, `📅 ${closestDate}\nhttps://kolejkagdansk.ajhmedia.pl/branch/5\nPosted ${new Date()}`);
-    
-    res.status(200).json('Listening to bot events...');
-  } catch (error) {
-    console.log(error, '<---- increase delay')
-    delay *= 2;
-  }
+      if (closestDate) bot.sendMessage(CHAT_ID, `📅 ${closestDate}\nhttps://kolejkagdansk.ajhmedia.pl/branch/5\nPosted ${new Date()}`);
+
+      res.status(200).json('Listening to bot events...');
+    } catch (error) {
+      console.log(error, '<---- increase delay')
+      delay *= 2;
+    }
+
+    timerId = setTimeout(request, delay);
+
+  }, delay);
 };
 
