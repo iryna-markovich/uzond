@@ -16,20 +16,20 @@ const bot = new Telegraf(TG_BOT_TOKEN);
 bot.command('about', about());
 bot.on('message', greeting());
 
-export const startVercel = async (req: VercelRequest, res: VercelResponse) => {
-  if (!VERCEL_URL) {
-    throw new Error('VERCEL_URL is not set.');
-  }
+// export const startVercel = async (req: VercelRequest, res: VercelResponse) => {
+//   if (!VERCEL_URL) {
+//     throw new Error('VERCEL_URL is not set.');
+//   }
 
-  const getWebhookInfo = await bot.telegram.getWebhookInfo();
-  if (getWebhookInfo.url !== VERCEL_URL + '/api') {
-    await bot.telegram.deleteWebhook();
-    await bot.telegram.setWebhook(`${VERCEL_URL}/api`);
-  }
+//   const getWebhookInfo = await bot.telegram.getWebhookInfo();
+//   if (getWebhookInfo.url !== VERCEL_URL + '/api') {
+//     await bot.telegram.deleteWebhook();
+//     await bot.telegram.setWebhook(`${VERCEL_URL}/api`);
+//   }
 
-  if (req.method === 'POST') {
-    await bot.handleUpdate(req.body as unknown as Update, res);
-  } else {
-    res.status(200).json('Listening to bot events...');
-  }
-};
+//   if (req.method === 'POST') {
+//     await bot.handleUpdate(req.body as unknown as Update, res);
+//   } else {
+//     res.status(200).json('Listening to bot events...');
+//   }
+// };
