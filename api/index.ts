@@ -3,7 +3,9 @@ import { startVercel } from '../src';
 
 export default async function handle(req: VercelRequest, res: VercelResponse) {
   try {
-    setInterval(async () => await startVercel(req, res), 10_000)
+    console.log('8888888888')
+
+    await startVercel(req, res)
   } catch (e: any) {
     res.statusCode = 500;
     res.setHeader('Content-Type', 'text/html');
