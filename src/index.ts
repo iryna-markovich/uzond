@@ -23,8 +23,10 @@ let timerId = setTimeout(async function request() {
 
   try {
     const dates = await getDates();
+    console.log(dates, '-----dates---')
 
     const closestDate = dates.find((date: string) => new Date(formatDate(date)) >= new Date(suitableDateFrom) && new Date(formatDate(date)) <= new Date(suitableDateTo))
+    console.log(closestDate, '-----closestDate---')
 
     if (closestDate) bot.sendMessage(CHAT_ID, `📅 ${closestDate}\nhttps://kolejkagdansk.ajhmedia.pl/branch/5\nPosted ${new Date()}`);
 
