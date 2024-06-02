@@ -17,27 +17,28 @@ async function getDates() {
   return DATES
 }
 
-const check = () => {
-  let timerId = setTimeout(async function request() {
-    try {
-      const dates = await getDates();
 
-      const closestDate = dates.find((date: string) => new Date(formatDate(date)) >= new Date(suitableDateFrom) && new Date(formatDate(date)) <= new Date(suitableDateTo))
+// let timerId = setTimeout(async function request() {
+//   try {
+//     const dates = await getDates();
 
-      if (closestDate) bot.sendMessage(CHAT_ID, `📅 ${closestDate}\nhttps://kolejkagdansk.ajhmedia.pl/branch/5\nPosted ${new Date()}`);
+//     const closestDate = dates.find((date: string) => new Date(formatDate(date)) >= new Date(suitableDateFrom) && new Date(formatDate(date)) <= new Date(suitableDateTo))
 
-    } catch (error) {
-      delay *= 2;
-    }
+//     if (closestDate) bot.sendMessage(CHAT_ID, `📅 ${closestDate}\nhttps://kolejkagdansk.ajhmedia.pl/branch/5\nPosted ${new Date()}`);
 
-    timerId = setTimeout(request, delay);
+//   } catch (error) {
+//     delay *= 2;
+//   }
 
-  }, delay);
-}
+//   timerId = setTimeout(request, delay);
+
+// }, delay);
+
+setInterval(() => {
+  bot.sendMessage(CHAT_ID, `📅 \nhttps://kolejkagdansk.ajhmedia.pl/branch/5\nPosted ${new Date()}`)
+
+}, 10_000)
 
 export const startVercel = async (req: VercelRequest, res: VercelResponse) => {
-  setInterval(() => {
-    bot.sendMessage(CHAT_ID, `📅 \nhttps://kolejkagdansk.ajhmedia.pl/branch/5\nPosted ${new Date()}`)
-    res.status(200).json('Listening to bot events...');
-  }, 10_000)
+  res.status(200).json('Listening to bot events...');
 };
