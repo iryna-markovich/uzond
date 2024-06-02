@@ -18,27 +18,28 @@ async function getDates() {
   return DATES
 }
 
-let timerId = setTimeout(async function request() {
-  console.log('--------TIMER---')
+// let timerId = setTimeout(async function request() {
+//   console.log('--------TIMER---')
 
-  try {
-    const dates = await getDates();
-    console.log(dates, '-----dates---')
+//   try {
+//     const dates = await getDates();
+//     console.log(dates, '-----dates---')
 
-    const closestDate = dates.find((date: string) => new Date(formatDate(date)) >= new Date(suitableDateFrom) && new Date(formatDate(date)) <= new Date(suitableDateTo))
-    console.log(closestDate, '-----closestDate---')
+//     const closestDate = dates.find((date: string) => new Date(formatDate(date)) >= new Date(suitableDateFrom) && new Date(formatDate(date)) <= new Date(suitableDateTo))
+//     console.log(closestDate, '-----closestDate---')
 
-    if (closestDate) bot.sendMessage(CHAT_ID, `📅 ${closestDate}\nhttps://kolejkagdansk.ajhmedia.pl/branch/5\nPosted ${new Date()}`);
+//     if (closestDate) bot.sendMessage(CHAT_ID, `📅 ${closestDate}\nhttps://kolejkagdansk.ajhmedia.pl/branch/5\nPosted ${new Date()}`);
 
-  } catch (error) {
-    console.log('--------TIMER---', (error as Error).toString())
+//   } catch (error) {
+//     console.log('--------TIMER---', (error as Error).toString())
 
-    delay *= 2;
-  }
+//     delay *= 2;
+//   }
 
-  timerId = setTimeout(request, delay);
+//   timerId = setTimeout(request, delay);
 
-}, delay);
+// }, delay);
+setInterval(() => { console.log('2222') }, 60_000)
 
 export const startVercel = async (req: VercelRequest, res: VercelResponse) => {
   // let timerId = setTimeout(async function request() {
@@ -56,9 +57,7 @@ export const startVercel = async (req: VercelRequest, res: VercelResponse) => {
   //   timerId = setTimeout(request, delay);
 
   // }, delay);
-  if (req.method === 'POST') {
-    await bot.sendMessage(CHAT_ID, '00000');
-  } else {
-    res.status(200).json('Listening to bot events...');
-  }
+  setInterval(() => { console.log('3333') }, 60_000)
+  res.status(200).json('Listening to bot events...');
+  setInterval(() => { console.log('11111') }, 60_000)
 };
