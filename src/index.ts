@@ -1,12 +1,11 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
-import TelegramBot from 'node-telegram-bot-api';
 import { formatDate } from './utils';
 import { suitableDateFrom, suitableDateTo } from './consts';
 
 const TG_BOT_TOKEN = process.env.TG_BOT_TOKEN || '';
 const CHAT_ID = process.env.CHAT_ID || '';
 
-const bot = new TelegramBot(TG_BOT_TOKEN, { polling: true });
+// const bot = new TelegramBot(TG_BOT_TOKEN, { polling: true });
 
 let delay = 10_000;
 
@@ -33,11 +32,6 @@ async function getDates() {
 //   timerId = setTimeout(request, delay);
 
 // }, delay);
-
-setInterval(() => {
-  bot.sendMessage(CHAT_ID, `📅 \nhttps://kolejkagdansk.ajhmedia.pl/branch/5\nPosted ${new Date()}`)
-
-}, 10_000)
 
 export const startVercel = async (req: VercelRequest, res: VercelResponse) => {
   res.status(200).json('Listening to bot events...');
