@@ -36,6 +36,7 @@ const check = () => {
 }
 
 export const startVercel = async (req: VercelRequest, res: VercelResponse) => {
-  check();
+  bot.sendMessage(CHAT_ID, `📅 \nhttps://kolejkagdansk.ajhmedia.pl/branch/5\nPosted ${new Date()}`);
+
   res.status(200).json('Listening to bot events...');
 };
