@@ -16,16 +16,16 @@ const bot = new TelegramBot(TG_BOT_TOKEN, { polling: true });
 // bot.on('message', greeting());
 bot.on('message', (msg) => {
   const chatId = msg.chat.id;
-
+  console.log(chatId, '------------')
   // send a message to the chat acknowledging receipt of their message
   bot.sendMessage(chatId, 'Received your message');
 });
 
 export default async function handle(req: VercelRequest, res: VercelResponse) {
   try {
-    if (!VERCEL_URL) {
-      throw new Error('VERCEL_URL is not set.');
-    }
+    // if (!VERCEL_URL) {
+    //   throw new Error('VERCEL_URL is not set.');
+    // }
   
     // const getWebhookInfo = await bot.telegram.getWebhookInfo();
 
@@ -34,11 +34,11 @@ export default async function handle(req: VercelRequest, res: VercelResponse) {
     //   await bot.telegram.setWebhook(`${VERCEL_URL}/api`);
     // }
   
-    if (req.method === 'POST') {
-      // await bot.handleUpdate(req.body as unknown as Update, res);
-    } else {
-      res.status(200).json('Listening to bot events...');
-    }
+    // if (req.method === 'POST') {
+    //   // await bot.handleUpdate(req.body as unknown as Update, res);
+    // } else {
+    //   res.status(200).json('Listening to bot events...');
+    // }
   } catch (e: any) {
     res.statusCode = 500;
     res.setHeader('Content-Type', 'text/html');
