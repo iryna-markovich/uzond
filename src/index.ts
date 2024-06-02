@@ -18,7 +18,7 @@ bot.command('about', about());
 bot.on('message', greeting());
 
 
-export default async function handle(req: VercelRequest, res: VercelResponse) {
+export default async function handle2(req: VercelRequest, res: VercelResponse) {
   try {
     await startVercel(req, res);
   } catch (e: any) {
