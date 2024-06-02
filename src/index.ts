@@ -50,5 +50,9 @@ export const startVercel = async (req: VercelRequest, res: VercelResponse) => {
   //   timerId = setTimeout(request, delay);
 
   // }, delay);
-  res.status(200).json('Listening to bot events...');
+  if (req.method === 'POST') {
+    await bot.sendMessage(CHAT_ID, '00000');
+  } else {
+    res.status(200).json('Listening to bot events...');
+  }
 };
