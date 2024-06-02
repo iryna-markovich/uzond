@@ -1,4 +1,4 @@
-import { bot, chatId } from './telegramInstance.js';
+import { bot } from './telegramInstance.js';
 import { chatId, suitableDateFrom, suitableDateTo } from './const.js';
 import { formatDate } from './utils/index.js'
 
