@@ -16,10 +16,10 @@ async function getDates() {
 
 export default async function handle(req: VercelRequest, res: VercelResponse) {
   try {
-    setInterval(() => {
+    
       bot.sendMessage(CHAT_ID, `📅 \nhttps://kolejkagdansk.ajhmedia.pl/branch/5\nPosted ${new Date()}`)
     
-    }, 100_000)
+    
     
     // await startVercel(req, res)
   } catch (e: any) {
