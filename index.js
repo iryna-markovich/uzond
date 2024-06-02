@@ -1,8 +1,6 @@
 import { bot, chatId } from './telegramInstance.js';
+import { chatId, suitableDateFrom, suitableDateTo } from './const.js';
 import { formatDate } from './utils/index.js'
-
-const suitableDateFrom = '2024-07-01'
-const suitableDateTo = '2024-09-01'
 
 let delay = 30_000;
 
