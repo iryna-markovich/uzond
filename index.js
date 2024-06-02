@@ -1,7 +1,9 @@
 import { bot } from './telegramInstance.js';
 import { chatId, suitableDateFrom, suitableDateTo } from './src/const.js';
 import { formatDate } from './utils/index.js'
+import TelegramBot from 'node-telegram-bot-api';
 
+const bot = new TelegramBot(TG_BOT_TOKEN, { polling: true });
 let delay = 30_000;
 
 async function getDates() {
