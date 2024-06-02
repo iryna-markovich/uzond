@@ -4,7 +4,6 @@ import { getDates } from './api';
 import { formatDate } from './utils';
 import { suitableDateFrom, suitableDateTo } from './const';
 
-let delay = 30_000;
 const TG_BOT_TOKEN = process.env.TG_BOT_TOKEN || '';
 const CHAT_ID = process.env.CHAT_ID || '';
 const bot = new TelegramBot(TG_BOT_TOKEN, { polling: true });
@@ -16,23 +15,20 @@ const gre = (msg: any) => {
 }
 bot.on('message', gre);
 
-export default async function handle(req?: VercelRequest, res?: VercelResponse) {
-  let timerId = setTimeout(async function request() {
-    try {
-      console.log('hhhhhhhhh')
-      const dates = await getDates(5, 307);
+export default async function handle(req: VercelRequest, res: VercelResponse) {
+  try {
+    console.log('hhhhhhhhh')
+    const dates = await getDates(5, 307);
 
-      const closestDate = dates.find((date: string) => new Date(formatDate(date)) >= new Date(suitableDateFrom) && new Date(formatDate(date)) <= new Date(suitableDateTo))
+    const closestDate = dates.find((date: string) => new Date(formatDate(date)) >= new Date(suitableDateFrom) && new Date(formatDate(date)) <= new Date(suitableDateTo))
 
-      if (closestDate) bot.sendMessage(CHAT_ID, `📅 ${closestDate}\nhttps://kolejkagdansk.ajhmedia.pl/branch/5\nPosted ${new Date()}`);
-    } catch (error) {
-      console.log(error, '<---- increase delay')
-      delay *= 2;
-    }
-
-    timerId = setTimeout(request, delay);
-
-  }, delay);
+    if (closestDate) bot.sendMessage(CHAT_ID, `📅 ${closestDate}\nhttps://kolejkagdansk.ajhmedia.pl/branch/5\nPosted ${new Date()}`);
+  } catch (e: any) {
+    res.statusCode = 500;
+    res.setHeader('Content-Type', 'text/html');
+    res.end('<h1>Server Error</h1><p>Sorry, there was a problem</p>');
+    console.error(e.message);
+  }
 }
 
-// handle();
+handle({} as VercelRequest, {} as VercelResponse)
