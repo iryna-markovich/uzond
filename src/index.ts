@@ -35,4 +35,4 @@ export default async function handle(req?: VercelRequest, res?: VercelResponse) 
   }, delay);
 }
 
-handle();
+// handle();
