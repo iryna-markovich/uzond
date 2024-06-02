@@ -8,8 +8,6 @@ const CHAT_ID = process.env.CHAT_ID || '';
 
 const bot = new TelegramBot(TG_BOT_TOKEN, { polling: true });
 
-let delay = 10_000;
-
 async function getDates() {
   const response = await fetch("https://kolejkagdansk.ajhmedia.pl/admin/API/date/5/307/pl");
   const { DATES } = await response.json();
@@ -18,22 +16,12 @@ async function getDates() {
 }
 
 export const startVercel = async (req: VercelRequest, res: VercelResponse) => {
-  let timerId = setTimeout(async function request() {
-    try {
-      const dates = await getDates();
+  const dates = await getDates();
 
-      const closestDate = dates.find((date: string) => new Date(formatDate(date)) >= new Date(suitableDateFrom) && new Date(formatDate(date)) <= new Date(suitableDateTo))
+  const closestDate = dates.find((date: string) => new Date(formatDate(date)) >= new Date(suitableDateFrom) && new Date(formatDate(date)) <= new Date(suitableDateTo))
 
-      if (closestDate) bot.sendMessage(CHAT_ID, `📅 ${closestDate}\nhttps://kolejkagdansk.ajhmedia.pl/branch/5\nPosted ${new Date()}`);
+  if (closestDate) bot.sendMessage(CHAT_ID, `📅 ${closestDate}\nhttps://kolejkagdansk.ajhmedia.pl/branch/5\nPosted ${new Date()}`);
 
-      res.status(200).json('Listening to bot events...');
-    } catch (error) {
-      console.log(error, '<---- increase delay')
-      delay *= 2;
-    }
+  res.status(200).json('Listening to bot events...');
 
-    timerId = setTimeout(request, delay);
-
-  }, delay);
 };
-
