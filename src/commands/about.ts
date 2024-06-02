@@ -1,13 +1,10 @@
 import { Context } from 'telegraf';
-import createDebug from 'debug';
 
-import { author, name, version } from '../../package.json';
-
-const debug = createDebug('bot:about_command');
+import { name, version } from '../../package.json';
 
 const about = () => async (ctx: Context) => {
-  const message = `*${name} ${version}*\n${author}`;
-  debug(`Triggered "about" command with message \n${message}`);
+  const message = `*${name} ${version}*\n`;
+
   await ctx.replyWithMarkdownV2(message, { parse_mode: 'Markdown' });
 };
 
