@@ -3,8 +3,6 @@ import { startVercel } from '../src';
 
 export default async function handle(req: VercelRequest, res: VercelResponse) {
   try {
-    console.log('8888888888')
-
     await startVercel(req, res)
   } catch (e: any) {
     res.statusCode = 500;
