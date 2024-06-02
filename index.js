@@ -1,1 +1,4 @@
-setInterval(() => { console.log('dddddd') }, 10000)
+require("dotenv").config();
+
+var bot = require('./bot');
+require('./web')(bot);

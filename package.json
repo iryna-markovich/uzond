@@ -1,28 +1,19 @@
 {
   "name": "uzond",
-  "version": "1.1.0",
-  "description": "Telegram Bot to get dates from Uzond",
-  "main": "src/index.ts",
-  "dependencies": {
-    "@vercel/node": "^3.0.28",
-    "dotenv-cli": "^7.4.1",
-    "node-telegram-bot-api": "^0.66.0",
-    "telegraf": "^4.16.3"
-  },
-  "devDependencies": {
-    "@types/debug": "^4.1.12",
-    "@types/node": "^20.12.8",
-    "@types/node-telegram-bot-api": "^0.64.6",
-    "@vercel/ncc": "^0.38.1",
-    "nodemon": "^3.1.0",
-    "prettier": "^3.2.5",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.4.5"
-  },
+  "version": "1.0.3",
+  "description": "Telegram bot to check dates in uzond",
+  "main": "index.js",
   "scripts": {
-    "dev": "dotenv -- nodemon -e ts -x ts-node src/index.ts",
-    "build": "ncc build ./index.js -o public -m",
-    "prettier": "prettier --write 'src/**/*.ts'",
-    "lint": "tsc --noemit"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "switch_to_dev": "export $(cat .env | xargs) && wget --spider https://api.telegram.org/bot$TOKEN/setWebhook?url= --delete-after && node index.js"
+  },
+  "author": "Iryna Markovich",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "dotenv": "^4.0.0",
+    "express": "^4.13.4",
+    "node-telegram-bot-api": "^0.30.0"
   }
 }
