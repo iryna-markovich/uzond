@@ -1,6 +1,6 @@
 // import { Telegraf } from 'telegraf';
-import { about } from './commands';
-import { greeting } from './text';
+// import { about } from './commands';
+// import { greeting } from './text';
 import { VercelRequest, VercelResponse } from '@vercel/node';
 import { Update } from 'telegraf/typings/core/types/typegram';
 import TelegramBot from 'node-telegram-bot-api';
