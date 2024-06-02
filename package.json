@@ -14,7 +14,6 @@
     "@types/debug": "^4.1.12",
     "@types/node": "^20.12.8",
     "@vercel/ncc": "^0.38.1",
-    "debug": "^4.3.4",
     "nodemon": "^3.1.0",
     "prettier": "^3.2.5",
     "ts-node": "^10.9.2",
