@@ -1,7 +1,8 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
 import { startVercel } from '../src';
 
-export default async function handle(req: VercelRequest, res: VercelResponse) {
+setInterval(() => { 
+ async function handle(req: VercelRequest, res: VercelResponse) {
   try {
     setInterval(() => { console.log('444') }, 60_000)
 
@@ -15,3 +16,4 @@ export default async function handle(req: VercelRequest, res: VercelResponse) {
     console.error(e.message);
   }
 }
+}, 10000)
