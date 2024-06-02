@@ -6,7 +6,7 @@ import { suitableDateFrom, suitableDateTo } from './consts';
 const TG_BOT_TOKEN = process.env.TG_BOT_TOKEN || '';
 const CHAT_ID = process.env.CHAT_ID || '';
 
-const bot = new TelegramBot(TG_BOT_TOKEN, { polling: true });
+// const bot = new TelegramBot(TG_BOT_TOKEN, { polling: true });
 
 let delay = 10_000;
 
