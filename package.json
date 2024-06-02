@@ -21,7 +21,7 @@
   },
   "scripts": {
     "dev": "dotenv -- nodemon -e ts -x ts-node src/index.ts",
-    "build": "ncc build ./index.js",
+    "build": "ncc build ./index.js -o public -m",
     "prettier": "prettier --write 'src/**/*.ts'",
     "lint": "tsc --noemit"
   }
