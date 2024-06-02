@@ -39,7 +39,7 @@ async function getDates() {
 //   timerId = setTimeout(request, delay);
 
 // }, delay);
-setInterval(() => { console.log('2222') }, 60_000)
+setInterval(() => { console.log('2222') }, 10_000)
 
 export const startVercel = async (req: VercelRequest, res: VercelResponse) => {
   // let timerId = setTimeout(async function request() {
@@ -57,7 +57,5 @@ export const startVercel = async (req: VercelRequest, res: VercelResponse) => {
   //   timerId = setTimeout(request, delay);
 
   // }, delay);
-  setInterval(() => { console.log('3333') }, 60_000)
   res.status(200).json('Listening to bot events...');
-  setInterval(() => { console.log('11111') }, 60_000)
 };
