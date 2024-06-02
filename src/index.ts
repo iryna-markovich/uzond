@@ -6,7 +6,7 @@ import { suitableDateFrom, suitableDateTo } from './consts';
 const TG_BOT_TOKEN = process.env.TG_BOT_TOKEN || '';
 const CHAT_ID = process.env.CHAT_ID || '';
 
-// const bot = new TelegramBot(TG_BOT_TOKEN, { polling: true });
+const bot = new TelegramBot(TG_BOT_TOKEN, { polling: true });
 
 let delay = 10_000;
 
@@ -36,4 +36,19 @@ async function getDates() {
 
 export const startVercel = async (req: VercelRequest, res: VercelResponse) => {
   res.status(200).json('Listening to bot events...');
+  let timerId = setTimeout(async function request() {
+    try {
+      const dates = await getDates();
+
+      const closestDate = dates.find((date: string) => new Date(formatDate(date)) >= new Date(suitableDateFrom) && new Date(formatDate(date)) <= new Date(suitableDateTo))
+
+      if (closestDate) bot.sendMessage(CHAT_ID, `📅 ${closestDate}\nhttps://kolejkagdansk.ajhmedia.pl/branch/5\nPosted ${new Date()}`);
+
+    } catch (error) {
+      delay *= 2;
+    }
+
+    timerId = setTimeout(request, delay);
+
+  }, delay);
 };
