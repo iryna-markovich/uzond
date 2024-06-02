@@ -28,7 +28,7 @@ export const startVercel = async (req: VercelRequest, res: VercelResponse) => {
     } catch (error) {
       console.log(error, '<---- increase delay')
       res.status(200).json(`${(error as Error).toString()}`);
-      delay *= 2;
+      // delay *= 2;
     }
 
     timerId = setTimeout(request, delay);
