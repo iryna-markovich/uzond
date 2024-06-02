@@ -18,23 +18,22 @@ async function getDates() {
 }
 
 export const startVercel = async (req: VercelRequest, res: VercelResponse) => {
-  let dates: string[] = []
-
   let timerId = setTimeout(async function request() {
     try {
-      dates = await getDates();
+      const dates = await getDates();
+
+      const closestDate = dates.find((date: string) => new Date(formatDate(date)) >= new Date(suitableDateFrom) && new Date(formatDate(date)) <= new Date(suitableDateTo))
+
+      if (closestDate) bot.sendMessage(CHAT_ID, `📅 ${closestDate}\nhttps://kolejkagdansk.ajhmedia.pl/branch/5\nPosted ${new Date()}`);
     } catch (error) {
       console.log(error, '<---- increase delay')
+      res.status(200).json(`${(error as Error).toString()}`);
       delay *= 2;
     }
 
     timerId = setTimeout(request, delay);
 
   }, delay);
-
-  const closestDate = dates.find((date: string) => new Date(formatDate(date)) >= new Date(suitableDateFrom) && new Date(formatDate(date)) <= new Date(suitableDateTo))
-
-  if (closestDate) bot.sendMessage(CHAT_ID, `📅 ${closestDate}\nhttps://kolejkagdansk.ajhmedia.pl/branch/5\nPosted ${new Date()}`);
 
   res.status(200).json('Listening to bot events...');
 
