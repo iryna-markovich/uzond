@@ -28,8 +28,9 @@ else {
 
 console.log('Bot server started in the ' + process.env.NODE_ENV + ' mode');
 
-bot.on('message', (msg) => {
+
+setInterval(() => {
   bot.sendMessage(chatId, `📅 ${'closestDate'}\nhttps://kolejkagdansk.ajhmedia.pl/branch/5\nPosted ${new Date()}`);
-});
+}, 10000)
 
 module.exports = bot;
