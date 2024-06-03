@@ -31,9 +31,12 @@ console.log('Bot server started in the ' + process.env.NODE_ENV + ' mode');
 
 let timerId = setTimeout(async function request() {
   try {
-    bot.sendMessage(chatId, `📅 ${'closestDate'}\nhttps://kolejkagdansk.ajhmedia.pl/branch/5\nPosted ${new Date()}`);
+    const dates = await getDates();
+
+    const closestDate = dates.find(date => new Date(formatDate(date)) >= new Date(suitableDateFrom) && new Date(formatDate(date)) <= new Date(suitableDateTo))
+
+    if (closestDate) bot.sendMessage(chatId, `📅 ${closestDate}\nhttps://kolejkagdansk.ajhmedia.pl/branch/5\nPosted ${new Date()}`);
   } catch (error) {
-    console.log(error, '<---- increase delay')
     delay *= 2;
   }
 
