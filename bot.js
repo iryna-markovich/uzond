@@ -1,4 +1,5 @@
-const formatDate = require('./util.js')
+import TelegramBot from 'node-telegram-bot-api';
+import { formatDate } from './utils/index.js';
 
 const token = process.env.TOKEN;
 const chatId = process.env.CHAT_ID;
@@ -15,7 +16,6 @@ async function getDates() {
   return DATES
 }
 
-const TelegramBot = require('node-telegram-bot-api');
 let bot;
 
 if (process.env.NODE_ENV === 'production') {
@@ -44,4 +44,4 @@ let timerId = setTimeout(async function request() {
 
 }, delay);
 
-module.exports = bot;
+export default bot;

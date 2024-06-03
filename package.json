@@ -1,8 +1,9 @@
 {
   "name": "uzond",
   "version": "1.0.3",
-  "description": "Telegram bot to check dates in uzond",
+  "description": "Telegram bot to check dates in Pomorskim Urzędzie Wojewódzkim w Gdańsku",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",

@@ -1,13 +1,11 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const packageInfo = require('./package.json');
-
+import express from 'express';
+import bodyParser from 'body-parser';
 
 const app = express();
 app.use(bodyParser.json());
 
 app.get('/', function (req, res) {
-  res.json({ version: packageInfo.version });
+  res.json({ version: 'hello' });
 });
 
 var server = app.listen(process.env.PORT, "0.0.0.0", () => {
@@ -16,9 +14,16 @@ var server = app.listen(process.env.PORT, "0.0.0.0", () => {
   console.log('Web server started at http://%s:%s', host, port);
 });
 
-module.exports = (bot) => {
+// module.exports = (bot) => {
+//   app.post('/' + bot.token, (req, res) => {
+//     bot.processUpdate(req.body);
+//     res.sendStatus(200);
+//   });
+// };
+
+export default function initWeb(bot) {
   app.post('/' + bot.token, (req, res) => {
     bot.processUpdate(req.body);
     res.sendStatus(200);
   });
-};
+}
