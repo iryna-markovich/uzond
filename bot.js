@@ -14,6 +14,7 @@ let bot;
 if (process.env.NODE_ENV === 'production') {
   bot = new TelegramBot(TOKEN);
   bot.setWebHook(process.env.HEROKU_URL + bot.token);
+  bot.setMyCommands(['sss', '77777'])
 }
 else {
   bot = new TelegramBot(TOKEN, { polling: true });
