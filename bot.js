@@ -3,7 +3,7 @@ const token = process.env.TOKEN;
 const Bot = require('node-telegram-bot-api');
 let bot;
 
-if(process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production') {
   bot = new Bot(token);
   bot.setWebHook(process.env.HEROKU_URL + bot.token);
 }
