@@ -6,7 +6,7 @@ const chatId = process.env.CHAT_ID;
 const suitableDateFrom = '2024-07-01'
 const suitableDateTo = '2024-12-01'
 
-let delay = 30_000;
+let delay = 10_000;
 
 async function getDates() {
   console.log('----> working')
@@ -29,8 +29,16 @@ else {
 console.log('Bot server started in the ' + process.env.NODE_ENV + ' mode');
 
 
-setInterval(() => {
-  bot.sendMessage(chatId, `📅 ${'closestDate'}\nhttps://kolejkagdansk.ajhmedia.pl/branch/5\nPosted ${new Date()}`);
-}, 10000)
+let timerId = setTimeout(async function request() {
+  try {
+    bot.sendMessage(chatId, `📅 ${'closestDate'}\nhttps://kolejkagdansk.ajhmedia.pl/branch/5\nPosted ${new Date()}`);
+  } catch (error) {
+    console.log(error, '<---- increase delay')
+    delay *= 2;
+  }
+
+  timerId = setTimeout(request, delay);
+
+}, delay);
 
 module.exports = bot;
