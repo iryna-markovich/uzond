@@ -5,8 +5,8 @@ import { formatDate, getDates } from './utils/index.js';
 const TOKEN = process.env.TOKEN;
 const CHAT_ID = process.env.CHAT_ID;
 
-const suitableDateFrom = '2024-07-01'
-const suitableDateTo = '2024-12-01'
+const suitableDateFrom = '2025-07-01'
+const suitableDateTo = '2025-12-01'
 
 let delay = 10_000;
 let bot;

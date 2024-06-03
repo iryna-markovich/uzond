@@ -1,4 +1,4 @@
-import 'dotenv/config';
+import 'dotenv/config.js';
 import bot from './bot.js';
 import initWeb from './web.js';
 
