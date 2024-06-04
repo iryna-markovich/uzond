@@ -16,7 +16,12 @@ else {
 }
 
 bot.onText(/\/start/, (msg) => {
+  stopCheckingDates()
   bot.sendMessage(msg.chat.id, 'Bot helps to check the closest available date in Pomorskim Urzędzie Wojewódzkim w Gdańsku\nPick an option from menu for what purpose check dates or send a command\n/apply - Złożenie wniosku legalizującego pobyt\n/update - Uzupełnienie lub odbiór dokumentów');
+});
+
+bot.onText(/\/stop/, (msg) => {
+  stopCheckingDates()
 });
 
 bot.onText(/\/apply/, (msg) => {
