@@ -34,7 +34,7 @@ bot.onText(/\/update/, (msg) => {
   eventEmitter.emit('command', msg.text);
 });
 
-eventEmitter.on('command', (type) => {
+eventEmitter.once('command', (type) => {
   bot.sendMessage(process.env.CHAT_ID, 'Send period from YYYY-MM-DD to YYYY-MM-DD you are interested\n e.g.: 2024-04-01 - 2024-12-01');
 
   bot.once('message', (msg) => {
